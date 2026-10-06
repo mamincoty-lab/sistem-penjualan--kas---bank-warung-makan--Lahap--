@@ -60,7 +60,6 @@ async function supabaseRequest(table, options = {}) {
     method: options.method || 'GET',
     headers: {
       apikey: SUPABASE_SERVICE_ROLE_KEY,
-      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
       'Content-Type': 'application/json',
       Prefer: options.prefer || (options.method === 'POST' ? 'return=representation' : 'return=minimal')
     },
