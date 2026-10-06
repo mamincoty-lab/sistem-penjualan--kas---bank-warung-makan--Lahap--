@@ -615,4 +615,4 @@ server.on('error', (error) => {
   console.error(error);
 });
 
-server.listen(PORT, process.env.HOST || '127.0.0.1', () => console.log(`Warung app berjalan di http://127.0.0.1:${PORT}`));
+server.listen(PORT, process.env.HOST || '0.0.0.0', () => console.log(`Warung app berjalan di http://127.0.0.1:${PORT}`));
