@@ -1,0 +1,1 @@
+window.LAHAP_API_BASE = '';
