@@ -26,6 +26,9 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Copy logo into frontend
+        run: cp "logo lahap.png" frontend/
+
       - name: Upload frontend
         uses: actions/upload-pages-artifact@v4
         with:

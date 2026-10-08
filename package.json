@@ -1,0 +1,10 @@
+{
+  "name": "lahap-backend",
+  "private": true,
+  "scripts": {
+    "start": "node backend/app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
