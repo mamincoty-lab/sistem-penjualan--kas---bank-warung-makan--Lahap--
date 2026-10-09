@@ -615,4 +615,8 @@ server.on('error', (error) => {
   console.error(error);
 });
 
-server.listen(PORT, process.env.HOST || '0.0.0.0', () => console.log(`Warung app berjalan di http://127.0.0.1:${PORT}`));
+if (require.main === module) {
+  server.listen(PORT, process.env.HOST || '0.0.0.0', () => console.log(`Warung app berjalan di http://127.0.0.1:${PORT}`));
+}
+
+module.exports = (request, response) => server.emit('request', request, response);
