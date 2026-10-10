@@ -22,7 +22,7 @@ const SUPABASE_URL = (process.env.SUPABASE_URL || '').replace(/\/$/, '');
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 const OWNER_APPROVAL_PIN = process.env.OWNER_APPROVAL_PIN || '';
 const API_ACCESS_PIN = process.env.API_ACCESS_PIN || '';
-const API_ACCESS_REQUIRED = process.env.NODE_ENV === 'production' || Boolean(API_ACCESS_PIN);
+const API_ACCESS_REQUIRED = false;
 const EXPENSE_APPROVAL_LIMIT = Number(process.env.EXPENSE_APPROVAL_LIMIT || 1000000);
 const CORS_ORIGINS = new Set((process.env.CORS_ORIGINS || 'http://localhost:3000,http://127.0.0.1:3000').split(',').map(origin => origin.trim()).filter(Boolean));
 const FRONTEND_DIR = path.resolve(__dirname, '..', 'frontend');

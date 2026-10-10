@@ -9,22 +9,11 @@ function formatDate(value) { return new Intl.DateTimeFormat('id-ID', { day: '2-d
 function showToast(message, isError = false) { const toast = $('#toast'); toast.textContent = message; toast.className = `toast show${isError ? ' error' : ''}`; setTimeout(() => { toast.className = 'toast'; }, 3000); }
 async function authorizedFetch(url, request) {
   const headers = { ...request.headers };
-  const accessPin = sessionStorage.getItem('lahap-api-access-pin');
-  if (accessPin) headers['X-Lahap-Access-Pin'] = accessPin;
-  let response = await fetch(apiUrl(url), { ...request, headers });
-  if (response.status !== 401 || url.endsWith('/api/access') || !API_BASE_URL) return response;
-  if (!apiAccessPromise) apiAccessPromise = (async () => {
-    const pin = window.prompt('Masukkan PIN akses aplikasi untuk menghubungkan ke database:');
-    if (!pin) throw new Error('PIN akses diperlukan untuk menghubungkan ke database.');
-    const authorization = await fetch(apiUrl('/api/access'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pin }) });
-    const authorizationData = await authorization.json();
-    if (!authorization.ok) throw new Error(authorizationData.error || 'PIN akses tidak diterima.');
-    sessionStorage.setItem('lahap-api-access-pin', pin);
-    return pin;
-  })().finally(() => { apiAccessPromise = null; });
-  const authenticatedPin = await apiAccessPromise;
-  response = await fetch(apiUrl(url), { ...request, headers: { ...headers, 'X-Lahap-Access-Pin': authenticatedPin } });
-  return response;
+
+  return await fetch(apiUrl(url), {
+    ...request,
+    headers
+  });
 }
 async function api(url, options = {}) {
   const request = { ...options, headers: { ...(options.headers || {}) } };
